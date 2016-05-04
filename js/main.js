@@ -8,10 +8,12 @@ document.getElementById("input-toggle").addEventListener("click", function() {
   border.classList.toggle("msg-white");
   });
 
-loadArray = ["safpawem", "aiwehfipanwef", "apiwuefpaiuwef"]
 
-for (i =0; i < loadArray.length; i++){
+// function that fills the DOM with initial JSON messages, it is called in the load.js file after the load event is completed
+function initialMessages (){
+  var initialMessageArray = Chatty.getLoadArray();
 
-Chatty.addMessage("display-messages", loadArray[i]);
-
-}
+  for (i =0; i < initialMessageArray.length; i++){
+  Chatty.addMessage("display-messages", initialMessageArray[i]);
+  };
+};
