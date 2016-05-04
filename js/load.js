@@ -1,3 +1,4 @@
+
 var Chatty = (function (chatty){
 
   var loadArray = [];
@@ -20,3 +21,4 @@ var Chatty = (function (chatty){
   return chatty;
 
 }(Chatty || {}));
+
