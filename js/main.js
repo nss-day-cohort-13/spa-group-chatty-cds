@@ -8,3 +8,10 @@ document.getElementById("input-toggle").addEventListener("click", function() {
   border.classList.toggle("msg-white");
   });
 
+loadArray = ["safpawem", "aiwehfipanwef", "apiwuefpaiuwef"]
+
+for (i =0; i < loadArray.length; i++){
+
+Chatty.addMessage("display-messages", loadArray[i]);
+
+}

@@ -7,20 +7,21 @@ var Chatty = (function (chatty){
 
 var userMsgArray = [];
 
-  chatty.addMessage: function(id, message){
-    var element = document.getElementById("id");
+  chatty.addMessage = function(id, message){
+    var element = document.getElementById(id);
     element.innerHTML += `<div><p>${message}</p><button type="button">Delete</button></div>`;
     userMsgArray.push(message);
-  }
+  };
 
-  chatty.getUserMessages: function(message){
-    var index = userMsgArray.indexOf(message);
-    if (index > -1) {
-      userMsgArray.splice(index, 1);
-    }
-  }
+  chatty.removeArrayMessages = function(id){
+    var child = document.getElementById(id);
+    var parent = child.parentNode;
+    var index = userMsgArray.indexOf.call(parent.children, child);
+    userMsgArray.splice(index);
+  };
 
 
   return chatty;
 
 }(Chatty || {}));
+
