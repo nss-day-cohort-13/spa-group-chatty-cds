@@ -31,7 +31,7 @@ function addUserMessage (key){
   };
 };
 
-
+// added functionality to the Clear Message Board button
 var clearAllButton = document.getElementById("clear-msg");
 
 clearAllButton.addEventListener("click", clearAllMessages);
@@ -41,3 +41,17 @@ function clearAllMessages() {
   border.innerHTML = "";
   clearAllButton.setAttribute("disabled", true);
 };
+
+//************TEST STUFF************
+// border.addEventListener("click", deleteButtons);
+
+// function deleteButtons (event) {
+//   console.log("test");
+//   if (event.target.tagName.toLowerCase() === "button") {
+//     var idToDelete = this.id;
+//     console.log("foo", idToDelete);
+
+//     Chatty.removeArrayMessages(idToDelete);
+//     Chatty.deleteSingleMessageFromDOM(idToDelete);
+//   };
+// };
