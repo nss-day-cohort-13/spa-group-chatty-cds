@@ -10,7 +10,7 @@ var idVariable = 0;
 
   chatty.addMessage = function(id, message){
     var element = document.getElementById(id);
-    element.innerHTML += `<div id="${idVariable}"><p>${message}</p><button type="button">Delete</button></div>`;
+    element.innerHTML += `<div id="${idVariable}" class="individualMessageDiv"><p>${message}</p><button type="button">Delete</button></div>`;
     userMsgArray.push(message);
     idVariable++;
   };

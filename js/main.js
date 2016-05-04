@@ -17,3 +17,27 @@ function initialMessages (){
   Chatty.addMessage("display-messages", initialMessageArray[i]);
   };
 };
+
+
+// added functionality to user input message field
+var userInputText = document.getElementById("user-message-input");
+
+userInputText.addEventListener("keyup", addUserMessage);
+
+function addUserMessage (key){
+  if (key.which === 13){
+    Chatty.addMessage("display-messages", userInputText.value);
+    clearAllButton.removeAttribute("disabled");
+  };
+};
+
+
+var clearAllButton = document.getElementById("clear-msg");
+
+clearAllButton.addEventListener("click", clearAllMessages);
+
+function clearAllMessages() {
+  Chatty.removeAllMessagesInArray();
+  border.innerHTML = "";
+  clearAllButton.setAttribute("disabled", true);
+};
