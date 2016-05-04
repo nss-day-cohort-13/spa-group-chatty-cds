@@ -22,6 +22,9 @@ var idVariable = 0;
     userMsgArray.splice(index);
   };
 
+  chatty.removeAllMessagesInArray = function () {
+    userMsgArray = [];
+  };
 
   return chatty;
 
