@@ -1,3 +1,7 @@
-var Chatty = (function() {
-  return {};
+var Chatty = (function(chatty) {
+
+
+  return chatty;
 }(Chatty || {}));
+
+
