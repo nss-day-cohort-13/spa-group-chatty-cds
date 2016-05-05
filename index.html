@@ -11,13 +11,16 @@
     <!-- With Logo - Text Input -->
     <header id="main-header">
       <div id="input-box-style">
-        <h1 id="header-font" for"user-message-input">Chatty! &trade;</h1>
+        <label><h1 id="header-font" for"user-message-input">Chatty! &trade;</h1>
         <input type="text" id="user-message-input" placeholder="Enter your Chat" autofocus>
+        </label>
         <input type="button" id="clear-msg" name="clear-msg" value="Clear Message Board" >
       </div>
       <div id="chk-box-style">
-        <input type="checkbox" name="dark-theme" id="input-toggle" value="dark-theme">Dark Theme
-        <input type="checkbox" name="large-text" id="large-toggle" value="large-text">Large Text
+        <label for="input-toggle">Dark Theme</label>
+        <input type="checkbox" name="dark-theme" id="input-toggle" value="dark-theme">
+        <label for="large-toggle">Large Theme</label>
+        <input type="checkbox" name="large-text" id="large-toggle" value="large-text">
       </div>
     </header>
     <!-- Content Wrapper containing Messages-->
