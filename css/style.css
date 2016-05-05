@@ -7,66 +7,56 @@ body {
   margin: 0;
   padding: 0;
   font-size: 1.2em;
-  font-family: arial, sans-serif;
+  font-family: 'Exo 2', sans-serif;
   background-color: white;
   color: black;
 }
 
-/* Special Theme Styling */
+/*-------- Special Theme Styling----------- */
 .theme {
   background-color: black;
   color: white;
 }
 
-/* Link Styling LVHA */
-a:link {
-  color: blue;
-}
-a:visited {
-  color: blue
-}
-a:hover {
-  color: white;
-}
-a:active {
-  color: red;
-}
-li {
-  list-style-type: none;
+.large {
+  font-size: 1.5em;
 }
 
-/* Wrapper styling */
+/*-------- Wrapper styling------------------- */
 #wrapper {
   margin-left: 20px;
   min-width: 800px;
   width: 80%;
-  padding: 152px 0;
+  padding: 180px 0 100px;
   padding-left: 10px;
   margin: auto;
   background-color: transparent;
 }
 
-/*---------Header & Footer Styling-----------*/
+/*-------- Header & Footer Styling-----------*/
 #main-header div h1{
   display: inline;
 }
 
 article h1 {
   margin-top: 0;
+  margin-bottom: 20px;
 }
+
 #main-header {
   min-width: 800px;
   position: fixed;
   text-align: center;
   padding-top: 10px;
-  /*padding-right: 200px;*/
   width: 100%;
-  background-color: rgba(200,200,200, .9);
+  background-color: rgba(200,200,200, .92);
 }
+
 #input-box-style {
   width: 100%;
   background-color: transparent;
 }
+
 #main-footer {
   position: fixed;
   bottom: 0;
@@ -74,6 +64,7 @@ article h1 {
   width: 100%;
   background-color: rgba(200,200,200, .9);
 }
+
 #header-font {
   font-size: 2em;
   padding-right: 40px;
@@ -81,27 +72,31 @@ article h1 {
 
 #user-message-input {
   background-color: transparent; /*required for swap*/
+  font-family: 'Exo 2', sans-serif;
   width: 650px;
   height: 35px;
   padding-left: 10px;
   border-radius: 15px;
   font-size: .9em;
   font-weight: 800;
+  outline: none;
 }
 
 #clear-msg {
-  background-color: darkred;
-  font-size: 1em;
+  font-family: 'Exo 2', sans-serif;
+  background-color: rgba(185, 185, 150, .1);
+  font-size: .9em;
   font-weight: 700;
-  height: 30px;
+  height: 35px;
   border-radius: 15px;
+  margin-top: 5px;
+  outline: none;
 }
 
 #chk-box-style {
   padding: 5px;
   padding-right: 50px;
   text-align: center;
-
 }
 
 /*-------Message Area Styling ------*/
@@ -109,7 +104,8 @@ article h1 {
   width: 100%;
   padding: 2%;
   padding-bottom: 50px;
-  border: 1px solid black;
+  border: 3px solid black;
+  border-radius: 15px;
   background-color: transparent; /*required for swap*/
 }
 
@@ -117,8 +113,9 @@ article h1 {
   border: 1px solid white;
 }
 
+/*--------- Individual Message Styling-----------*/
 .individualMessageDiv {
-  border-left: 2px solid lightgrey;
+  border-left: 2px solid darkgrey;
   padding-left: 5px;
 }
 
@@ -126,3 +123,10 @@ article h1 {
   margin-bottom: 5px;
 }
 
+.deleteButton {
+  font-family: 'Exo 2', sans-serif;
+  background-color: rgba(185, 185, 150, .6);
+  width: 100px;
+  border-radius: 15px;
+  outline: none;
+}
