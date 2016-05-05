@@ -35,7 +35,7 @@ function addUserMessage (key){
   };
 };
 
-// added functionality to the Clear Message Board button
+//functionality for the Clear Message Board button
 var clearAllButton = document.getElementById("clear-msg");
 
 clearAllButton.addEventListener("click", clearAllMessages);
@@ -47,6 +47,7 @@ function clearAllMessages() {
 };
 
 
+// functionality for the individual message delete buttons
 border.addEventListener("click", deleteButtons);
 
 function deleteButtons (event) {
@@ -57,5 +58,8 @@ function deleteButtons (event) {
 
     Chatty.removeArrayMessages(idToDelete);
     Chatty.deleteSingleMessageFromDOM(idToDelete);
+    if (border.innerHTML === "") {
+      clearAllButton.setAttribute("disabled", true);
+    };
   };
 };
