@@ -1,4 +1,3 @@
-
 var Chatty = (function (chatty){
 
   var loadArray = [];
@@ -6,7 +5,7 @@ var Chatty = (function (chatty){
   function loadChatty () {
     var loadJsonArr = JSON.parse(this.responseText);
     loadArray = loadJsonArr.startMsg;
-    initialMessages();
+    chatty.initialMessages();
   };
 
   var infoRequest = new XMLHttpRequest();
