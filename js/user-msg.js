@@ -9,10 +9,12 @@ var userMsgArray = [];
 var idVariable = 0;
 
   chatty.addMessage = function(id, message){
-    var element = document.getElementById(id);
-    element.innerHTML += `<div id="${idVariable}" class="individualMessageDiv"><p>${message}</p><button type="button" class="deleteButton">Delete</button></div>`;
-    userMsgArray.push(message);
-    idVariable++;
+    if (message !== ""){
+      var element = document.getElementById(id);
+      element.innerHTML += `<div id="${idVariable}" class="individualMessageDiv"><p>${message}</p><button type="button" class="deleteButton">Delete</button></div>`;
+      userMsgArray.push(message);
+      idVariable++;
+    };
   };
 
   chatty.removeArrayMessages = function(id){

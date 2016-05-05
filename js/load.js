@@ -11,7 +11,6 @@ var Chatty = (function (chatty){
 
   var infoRequest = new XMLHttpRequest();
   infoRequest.addEventListener("load", loadChatty);
-  infoRequest.addEventListener("error", alert("Shit's fucked."));
   infoRequest.open("GET", "/data/startMsg.json");
   infoRequest.send();
 
