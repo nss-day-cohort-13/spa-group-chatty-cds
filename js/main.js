@@ -1,5 +1,6 @@
 var darkTheme = document.getElementById('color-theme');
 var border = document.getElementById('display-messages');
+var largeTheme = document.getElementById('color-theme');
 
 document.getElementById("input-toggle").addEventListener("click", function() {
   darkTheme.classList.toggle("theme");
@@ -7,6 +8,9 @@ document.getElementById("input-toggle").addEventListener("click", function() {
 document.getElementById("input-toggle").addEventListener("click", function() {
   border.classList.toggle("msg-white");
   });
+document.getElementById("large-toggle").addEventListener("click", function() {
+  largeTheme.classList.toggle("large");
+});
 
 
 // function that fills the DOM with initial JSON messages, it is called in the load.js file after the load event is completed
