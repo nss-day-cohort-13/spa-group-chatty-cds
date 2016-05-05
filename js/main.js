@@ -32,6 +32,7 @@ function addUserMessage (key){
   if (key.which === 13){
     Chatty.addMessage("display-messages", userInputText.value);
     clearAllButton.removeAttribute("disabled");
+    userInputText.value = "";
   };
 };
 
