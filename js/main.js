@@ -32,10 +32,11 @@ function addUserMessage (key){
   if (key.which === 13){
     Chatty.addMessage("display-messages", userInputText.value);
     clearAllButton.removeAttribute("disabled");
+    userInputText.value = "";
   };
 };
 
-// added functionality to the Clear Message Board button
+//functionality for the Clear Message Board button
 var clearAllButton = document.getElementById("clear-msg");
 
 clearAllButton.addEventListener("click", clearAllMessages);
@@ -46,16 +47,20 @@ function clearAllMessages() {
   clearAllButton.setAttribute("disabled", true);
 };
 
-//************TEST STUFF************
-// border.addEventListener("click", deleteButtons);
 
-// function deleteButtons (event) {
-//   console.log("test");
-//   if (event.target.tagName.toLowerCase() === "button") {
-//     var idToDelete = this.id;
-//     console.log("foo", idToDelete);
+// functionality for the individual message delete buttons
+border.addEventListener("click", deleteButtons);
 
-//     Chatty.removeArrayMessages(idToDelete);
-//     Chatty.deleteSingleMessageFromDOM(idToDelete);
-//   };
-// };
+function deleteButtons (event) {
+  console.log("test");
+  if (event.target.className === "deleteButton") {
+    var idToDelete = event.target.parentNode.id;
+    console.log("foo", event.target);
+
+    Chatty.removeArrayMessages(idToDelete);
+    Chatty.deleteSingleMessageFromDOM(idToDelete);
+    if (border.innerHTML === "") {
+      clearAllButton.setAttribute("disabled", true);
+    };
+  };
+};
