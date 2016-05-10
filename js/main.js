@@ -3,25 +3,20 @@
 var Chatty = (function (chatty){
 
 
-  var darkTheme = $("#color-theme")[0];
-  var border = $("#display-messages")[0];
-  var largeTheme = $("#color-theme")[0];
-  var darkToggle = $("#input-toggle")[0];
-  var largeToggle = $("#large-toggle")[0];
-  var userInputText = $("#user-message-input")[0];
-  var clearAllButton = $("#clear-msg")[0];
+  var darkTheme = $("#color-theme");
+  var $border = $("#display-messages");
+  var $largeTheme = $("#color-theme");
+  var $userInputText = $("#user-message-input");
+  var $clearAllButton = $("#clear-msg");
 
   // toggle classes for dark theme and large theme checkboxes
-  $(darkToggle).click(function() {
-    $(darkTheme).toggleClass("theme");
+  $("#input-toggle").click(function() {
+    darkTheme.toggleClass("theme");
+    $border.toggleClass("msg-white");
     });
 
-  $(darkToggle).click(function() {
-    $(border).toggleClass("msg-white");
-    });
-
-  $(largeToggle).click(function() {
-    $(largeTheme).toggleClass("large");
+  $("#large-toggle").click(function() {
+    $largeTheme.toggleClass("large");
   });
 
 
@@ -38,39 +33,39 @@ var Chatty = (function (chatty){
 
   // tests text input field for "enter" key press;
   // if pressed it passes the text input to the addMessage function and clears the text field
-  $(userInputText).keyup(addUserMessage);
+  $userInputText.keyup(addUserMessage);
 
   function addUserMessage (key){
     if (key.which === 13){
-      Chatty.addMessage("display-messages", userInputText.value);
-      clearAllButton.removeAttribute("disabled");
-      userInputText.value = "";
+      Chatty.addMessage("display-messages", $userInputText.val());
+      $clearAllButton.removeAttr("disabled");
+      $userInputText.val("");
     }
   }
 
 
   //when "Clear Message Board" button is pressed,
   // all messages are removed from the DOM and private array, and the button is disabled
-  $(clearAllButton).click(clearAllMessages);
+  $clearAllButton.click(clearAllMessages);
 
   function clearAllMessages() {
     Chatty.removeAllMessagesInArray();
-    border.innerHTML = "";
-    clearAllButton.setAttribute("disabled", true);
+    $border.empty();
+    $clearAllButton.attr("disabled", true);
   }
 
 
   // when "Delete" button is pressed,
   // the parent div is removed from the DOM, removing the message and delete button;
   // also checks for divs on the page and disables "Clear Message Board" button if empty
-  $(border).click(deleteButtons);
+  $border.click(deleteButtons);
 
   function deleteButtons (event) {
     if (event.target.className === "deleteButton") {
 
       Chatty.deleteSingleMessageFromDOM(event.target.parentNode.id);
-      if (border.innerHTML === "") {
-        clearAllButton.setAttribute("disabled", true);
+      if ($border.html() === "") {
+        $clearAllButton.attr("disabled", true);
       }
     }
   }
