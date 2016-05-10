@@ -1,32 +1,36 @@
+"use strict";
+
 var Chatty = (function (chatty){
 
-// One IIFE should contain a function that accepts an element id, and the user message,
-// and then add the user's message - along with the delete button - to the specified parent element.
-// Each message should be stored in a private array in this IIFE.
-// This IIFE should also expose a function to read all messages, and delete a single message.
 
 var userMsgArray = [];
 var idVariable = 0;
 
+  // will add a message to both the DOM with a unique id attached and into a private array
   chatty.addMessage = function(id, message){
     if (message !== ""){
-      var element = document.getElementById(id);
-      element.innerHTML += `<div id="${idVariable}" class="individualMessageDiv"><p>${message}</p><button type="button" class="deleteButton">Delete</button></div>`;
+      var element = $("#"+id)[0];
+      $(element).append(`<div id="${idVariable}" class="individualMessageDiv">
+                         <p>${message}</p>
+                         <button type="button" class="deleteButton">Delete</button>
+                         </div>`);
       userMsgArray.push(message);
       idVariable++;
-    };
+    }
   };
 
+  // will remove a single message from the private array given based on the message's position in the DOM
   chatty.removeArrayMessages = function(id){
-    var child = document.getElementById(id);
-    var parent = child.parentNode;
-    var index = userMsgArray.indexOf.call(parent.children, child);
-    userMsgArray.splice(index);
+    var index = $("#"+id).index();
+    userMsgArray.splice(index, 1);
   };
 
+  // getter for private array that holds all messages
   chatty.getMsgArray = function() {
     return userMsgArray;
   };
+
+  // will reset the private message array back to empty
   chatty.removeAllMessagesInArray = function () {
     userMsgArray = [];
   };
