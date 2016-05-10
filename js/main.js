@@ -1,65 +1,80 @@
+"use strict";
+
 var Chatty = (function (chatty){
 
-  var darkTheme = document.getElementById('color-theme');
-  var border = document.getElementById('display-messages');
-  var largeTheme = document.getElementById('color-theme');
 
-  document.getElementById("input-toggle").addEventListener("click", function() {
-    darkTheme.classList.toggle("theme");
+  var darkTheme = $("#color-theme")[0];
+  var border = $("#display-messages")[0];
+  var largeTheme = $("#color-theme")[0];
+  var darkToggle = $("#input-toggle")[0];
+  var largeToggle = $("#large-toggle")[0];
+  var userInputText = $("#user-message-input")[0];
+  var clearAllButton = $("#clear-msg")[0];
+
+  // toggle classes for dark theme and large theme checkboxes
+  $(darkToggle).click(function() {
+    $(darkTheme).toggleClass("theme");
     });
-  document.getElementById("input-toggle").addEventListener("click", function() {
-    border.classList.toggle("msg-white");
+
+  $(darkToggle).click(function() {
+    $(border).toggleClass("msg-white");
     });
-  document.getElementById("large-toggle").addEventListener("click", function() {
-    largeTheme.classList.toggle("large");
+
+  $(largeToggle).click(function() {
+    $(largeTheme).toggleClass("large");
   });
 
-  // function that fills the DOM with initial JSON messages, it is called in the load.js file after the load event is completed
-    chatty.initialMessages = function (){
-    var initialMessageArray = Chatty.getLoadArray();
 
-    for (i =0; i < initialMessageArray.length; i++){
-    Chatty.addMessage("display-messages", initialMessageArray[i]);
-    };
+    // function that fills the DOM with initial JSON messages,
+    // it is called in the load.js file after the json is loaded
+    chatty.initialMessages = function (content){
+    var initialMessageArray = content;
+
+    $(initialMessageArray).each(function (index, currentMessage){
+      Chatty.addMessage("display-messages", currentMessage);
+    });
   };
 
-  // added functionality to user input message field
-  var userInputText = document.getElementById("user-message-input");
 
-  userInputText.addEventListener("keyup", addUserMessage);
+  // tests text input field for "enter" key press;
+  // if pressed it passes the text input to the addMessage function and clears the text field
+  $(userInputText).keyup(addUserMessage);
 
   function addUserMessage (key){
     if (key.which === 13){
       Chatty.addMessage("display-messages", userInputText.value);
       clearAllButton.removeAttribute("disabled");
       userInputText.value = "";
-    };
-  };
+    }
+  }
 
-  //functionality for the Clear Message Board button
-  var clearAllButton = document.getElementById("clear-msg");
 
-  clearAllButton.addEventListener("click", clearAllMessages);
+  //when "Clear Message Board" button is pressed,
+  // all messages are removed from the DOM and private array, and the button is disabled
+  $(clearAllButton).click(clearAllMessages);
 
   function clearAllMessages() {
     Chatty.removeAllMessagesInArray();
     border.innerHTML = "";
     clearAllButton.setAttribute("disabled", true);
-  };
+  }
 
-  // functionality for the individual message delete buttons
-  border.addEventListener("click", deleteButtons);
+
+  // when "Delete" button is pressed,
+  // the parent div is removed from the DOM, removing the message and delete button;
+  // also checks for divs on the page and disables "Clear Message Board" button if empty
+  $(border).click(deleteButtons);
 
   function deleteButtons (event) {
     if (event.target.className === "deleteButton") {
-      var idToDelete = event.target.parentNode.id;
 
-      Chatty.deleteSingleMessageFromDOM(idToDelete);
+      Chatty.deleteSingleMessageFromDOM(event.target.parentNode.id);
       if (border.innerHTML === "") {
         clearAllButton.setAttribute("disabled", true);
-      };
-    };
-  };
+      }
+    }
+  }
+
 
   return chatty;
 
