@@ -3,6 +3,9 @@
 var Chatty = (function (chatty){
 
 
+
+  //************************ Variables ***************************
+
   var darkTheme = $("#color-theme");
   var $border = $("#display-messages");
   var $largeTheme = $("#color-theme");
@@ -20,21 +23,21 @@ var Chatty = (function (chatty){
   });
 
 
-    // function that fills the DOM with initial JSON messages,
-    // it is called in the load.js file after the json is loaded
-    chatty.initialMessages = function (content){
-    var initialMessageArray = content;
 
-    $(initialMessageArray).each(function (index, currentMessage){
-      Chatty.addMessage("display-messages", currentMessage);
-    });
-  };
+  //************************ Event Listeners ***************************
 
-
-  // tests text input field for "enter" key press;
-  // if pressed it passes the text input to the addMessage function and clears the text field
   $userInputText.keyup(addUserMessage);
 
+  $clearAllButton.click(clearAllMessages);
+
+  $border.click(deleteButtons);
+
+
+
+  //************************ Event Listener Functions ***************************
+
+  // tests if key pressed is "enter" key;
+  // if pressed, it passes the text input to the addMessage function and clears the text field
   function addUserMessage (key){
     if (key.which === 13){
       Chatty.addMessage("display-messages", $userInputText.val());
@@ -43,32 +46,36 @@ var Chatty = (function (chatty){
     }
   }
 
-
-  //when "Clear Message Board" button is pressed,
-  // all messages are removed from the DOM and private array, and the button is disabled
-  $clearAllButton.click(clearAllMessages);
-
+  // all messages are removed from the DOM and private array, and the "Clear Message Board" button is disabled
   function clearAllMessages() {
     Chatty.removeAllMessagesInArray();
     $border.empty();
     $clearAllButton.attr("disabled", true);
   }
 
-
-  // when "Delete" button is pressed,
-  // the parent div is removed from the DOM, removing the message and delete button;
+  // tests if a delete button is clicked and passes the id of it's parent div to the deleteSingleMessageFromDOM function
   // also checks for divs on the page and disables "Clear Message Board" button if empty
-  $border.click(deleteButtons);
-
   function deleteButtons (event) {
     if (event.target.className === "deleteButton") {
-
       Chatty.deleteSingleMessageFromDOM(event.target.parentNode.id);
       if ($border.html() === "") {
         $clearAllButton.attr("disabled", true);
       }
     }
   }
+
+
+
+  //************************ Public Functions ***************************
+
+  // function that fills the DOM with initial JSON messages,
+  // it is called in the load.js file after the json is loaded
+  chatty.initialMessages = function (content){
+    $(content).each(function (index, currentMessage){
+      Chatty.addMessage("display-messages", currentMessage);
+    });
+  };
+
 
 
   return chatty;

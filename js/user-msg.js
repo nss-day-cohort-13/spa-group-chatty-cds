@@ -6,11 +6,10 @@ var Chatty = (function (chatty){
 var userMsgArray = [];
 var idVariable = 0;
 
-  // will add a message to both the DOM with a unique id attached and into a private array
+  // will add a message to the DOM with a unique id and into a private array
   chatty.addMessage = function(id, message){
     if (message !== ""){
-      var element = $("#"+id)[0];
-      $(element).append(`<div id="${idVariable}" class="individualMessageDiv">
+      $("#"+id).append(`<div id="${idVariable}" class="individualMessageDiv">
                          <p>${message}</p>
                          <button type="button" class="deleteButton">Delete</button>
                          </div>`);
@@ -21,8 +20,7 @@ var idVariable = 0;
 
   // will remove a single message from the private array given based on the message's position in the DOM
   chatty.removeArrayMessages = function(id){
-    var index = $("#"+id).index();
-    userMsgArray.splice(index, 1);
+    userMsgArray.splice($("#"+id).index(), 1);
   };
 
   // getter for private array that holds all messages
